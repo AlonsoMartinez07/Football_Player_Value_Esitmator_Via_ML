@@ -1,0 +1,25 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+
+player_list = pd.read_csv('/fifa_players.csv', encoding = 'latin-1')
+player_list = player_list.drop(columns=['name', 'full_name', 'birth_date', 'weight_kgs', 'wage_euro', 'preferred_foot', 'body_type', 'release_clause_euro', 'national_team_position', 'national_jersey_number', 'nationality', 'positions', 'national_team'])
+
+player_list.dropna(subset=['value_euro'], inplace=True)
+
+X = player_list.iloc[:, np.r_[0:4, 7:38]]
+y = player_list.iloc[:, 4]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+rf2 = RandomForestRegressor(n_estimators=1000, criterion='squared_error', max_depth = 14, min_samples_split = 10, random_state=42)
+rf2.fit(X_train, y_train)
+
+# Show accuracy percentage 
+rf2.score(X_test, y_test)
+
+# Place the football/soccer player stats below according to the criteria list in README. You can also find the website to find the stats
+player_stats = [25, 188, 73, 80, 2, 70, 44, 74, 80, 69, 69, 66, 34, 46, 45, 69, 77, 75, 64, 71, 56, 72, 92, 72, 81, 67, 67, 30, 74, 50, 64, 59, 38, 29, 21]
+y_pred = rf2.predict([player_stats])
+print(y_pred)
