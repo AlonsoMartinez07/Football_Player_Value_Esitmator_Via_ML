@@ -3,7 +3,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 
-player_list = pd.read_csv('/fifa_players.csv', encoding = 'latin-1')
+# Read the player list with stats
+player_list = pd.read_csv('[path to fifa_players.csv]', encoding = 'latin-1')
 player_list = player_list.drop(columns=['name', 'full_name', 'birth_date', 'weight_kgs', 'wage_euro', 'preferred_foot', 'body_type', 'release_clause_euro', 'national_team_position', 'national_jersey_number', 'nationality', 'positions', 'national_team'])
 
 player_list.dropna(subset=['value_euro'], inplace=True)
