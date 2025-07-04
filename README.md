@@ -20,4 +20,4 @@ The order in which you plug in your players stats will be the following:
        'vision', 'penalties', 'composure', 'marking', 'standing_tackle',
        'sliding_tackle'
        
-If you feel any of these are useless and dont accuratly represent a players value go to player_list = player_list.drop(columns=['name'... and add the stat that you would like to remove
+If you feel any of these stats are useless and don't accurately represent a players value go to player_list = player_list.drop(columns=['name'... and add the stat that you would like to remove
